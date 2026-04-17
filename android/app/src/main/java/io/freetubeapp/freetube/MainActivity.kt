@@ -19,6 +19,7 @@ import io.freetubeapp.freetube.helpers.removeOnPreDraw
 import io.freetubeapp.freetube.helpers.toJSON
 import io.freetubeapp.freetube.helpers.toYtUrl
 import io.freetubeapp.freetube.helpers.urlEncode
+import io.freetubeapp.freetube.javascript.consoleLog
 import io.freetubeapp.freetube.javascript.dispatchEvent
 import io.freetubeapp.freetube.webviews.FreeTubeWebView
 
@@ -50,6 +51,12 @@ class MainActivity: FreeTubeActivity() {
           // The content is ready. Start drawing.
           val insets = (webView.insets / state.scale).toJSON()
           insets.put("cornerRadius", webView.cornerRadius / state.scale)
+          webView.consoleLog("Left = ${webView.insets.left}")
+          webView.consoleLog("Right = ${webView.insets.right}")
+          webView.consoleLog("Top = ${webView.insets.top}")
+          webView.consoleLog("Bottom = ${webView.insets.bottom}")
+          webView.consoleLog("Scale = ${state.scale}")
+          webView.consoleLog("Corner Radius = ${webView.cornerRadius}")
           webView.dispatchEvent("update-insets", insets)
           root.viewTreeObserver.removeOnPreDraw(this)
           true
